@@ -1,4 +1,3 @@
-
 # nevl
 nevl is a neovim plugin to run any intepretar in neovi internal terminal buffer and send text from buffer to the terminal to run on repl. This is very small plugin that just allows you to run neovim as if it was some sort of notebook session (with the obvious caveats and limitations).
 
@@ -31,13 +30,17 @@ This plugin comes with a default configuration:
         }
     }
 ```
+To change th config simply pass new config table to setup.
+```lua
+require("nevl").setup({shell = { default="python",python="python3"}})
+```
 
 # Example usage
 
 Open up a buffer with some python code for example. Then run the command "Nevl"
 
 Or you can use
-```
+```lua
 reqire("nevl").open_repl()
 ```
 
@@ -49,6 +52,13 @@ Lets say you have python shell. You can simply do
 g@ip
 ```
 
-To execute the current block of code in the repl.
+To execute the current block of code in the repl. I find it easier to map `<Leader><cr>` to run this, so simply map this.
 
+```lua
+vim.keymap.set("n","<leader><cr>","g@ap")
+```
+
+# Also Look
+[zepl.vim](https://github.com/axvr/zepl.vim)
+[toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim)
 
