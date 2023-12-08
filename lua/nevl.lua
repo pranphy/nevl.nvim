@@ -46,7 +46,7 @@ function Execute_lines()
     run_command(lines,termid)
 end
 
-M.whid = function(arg)
+M.repl = function(arg)
   if termid ~= nil then print("There is an existing REPL") else termid = open_window(arg) end
 end
 
@@ -57,10 +57,10 @@ M.setup = function(configp)
     vim.keymap.set("n", "gzz", "g@_")
     vim.keymap.set("n", "<leader><cr>", "g@ap}",{remap=true})
 
-    vim.api.nvim_create_user_command("Nevl",function(opts)
+    vim.api.nvim_create_user_command("Revl",function(opts)
         local shell = opts.args or ''
         if shell == '' then shell =  config.shell[vim.bo.filetype] or config.shell.default end
-        M.whid(shell)
+        M.repl(shell)
     end, {nargs='*'})
 end
 
