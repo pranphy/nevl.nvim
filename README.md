@@ -1,16 +1,16 @@
 # nevl.nvim
-`nevl.nvim` is a neovim plugin to run any intepretar in neovim's internal terminal buffer and send text from buffer to the terminal to run on repl. This is very small plugin that just allows you to run neovim as if it was some sort of notebook session (with the obvious caveats and limitations).
+`nevl.nvim` is a neovim plugin which can run any intepreter in neovim's internal terminal buffer and send text from buffer to the terminal to run on REPL. This is a very small plugin that just allows you to run neovim as if it was some sort of notebook session (with the obvious caveats and limitations).
 
 
 # Installation
-Uset your favourate plugin manager to install it. For example using lazy.nvim
+Use your favorite plugin manager to install it. For example using lazy.nvim:
 
 ```
 "pranphy/nevl.nvim"
 ```
 
 # Usage
-Make sure that the plugin is available in the runtime path, either through plugin manager or through manual setup of runtimepath. Then
+Make sure that the plugin is available in the runtime path, either through a plugin manager or through the manual setup of runtimepath. Then:
 
 ```lua
 require("nevl").setup()
@@ -30,7 +30,7 @@ This plugin comes with a default configuration:
         }
     }
 ```
-To change th config simply pass new config table to setup.
+To change the config simply pass new config table to setup:
 ```lua
 require("nevl").setup({shell = { default="julia",python="python3"}})
 ```
@@ -42,7 +42,7 @@ Based on your config it will first use the filetype shell, then try the default 
 
 You can also pass the shell argument, and it will open that in a split window. For example, `:Nevl octave` will open a octave repl on split buffer. 
 
-Or you can use
+Or you can use:
 ```lua
 reqire("nevl").open_repl("bash")
 ```
@@ -51,24 +51,24 @@ reqire("nevl").open_repl("bash")
 
 # Mapping
 
-There is a operator pending mapping that will send whatever text in the buffer is selected by motion and execute in the REPL.  The operator pending mapping is
+There is a "pending operator" mapping that will send whatever text is in the buffer to be executed in the REPL.  The operator pending mapping is:
 ```
 gz
 ```
 
 
-Lets say you have python shell. You can simply do
+Lets say you have python shell. You can simply do:
 ```
 gzip
 ```
 and it will execute current block of code from the buffer in the shell.
 
- I find it easier to map `<Leader><cr>` to run this, so simply map this.
+I find it easier to map `<Leader><cr>` to run this, so simply map this:
 
 ```lua
 vim.keymap.set("n","<leader><cr>","g@ap")
 ```
-Which is already defined too. Other defined mappings are
+Which is already defined too. Other defined mappings are:
 
  - `gzz` to execute current line
 
