@@ -57,7 +57,7 @@ M.setup = function(configp)
     vim.keymap.set("n", "gzz", "g@_")
     vim.keymap.set("n", "<leader><cr>", "g@ap}",{remap=true})
 
-    vim.api.nvim_create_user_command("Revl",function(opts)
+    vim.api.nvim_create_user_command("Nevl",function(opts)
         local shell = opts.args or ''
         if shell == '' then shell =  config.shell[vim.bo.filetype] or config.shell.default end
         M.repl(shell)
