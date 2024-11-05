@@ -26,15 +26,15 @@ local function open_window(shell)
     local win = vim.api.nvim_get_current_win()
     buf = vim.api.nvim_create_buf(true, true)
     vim.api.nvim_win_set_buf(win, buf)
-    local jobid = vim.fn.termopen(shell,{detach=false,on_exit=on_close})
-    return jobid
+    termid = vim.fn.termopen(shell,{detach=false,on_exit=on_close})
+    return termid
 end
 
-local function run_command(lines,jobid)
+function M.run_in_repl(lines)
     if termid == nil then print("No Active REPL") else
         local str = ""
         for _,ln in ipairs(lines) do if ln:gsub("%s+","") ~= "" then str = str..ln.."\n" end end
-        vim.api.nvim_chan_send(jobid,str)
+        vim.api.nvim_chan_send(termid,str)
     end
 end
 
@@ -43,7 +43,7 @@ function Execute_lines()
     local finish  = vim.fn.getpos("']")[2]
     local lines = vim.fn.getline(start,finish)
 
-    run_command(lines,termid)
+    M.run_in_repl(lines)
 end
 
 M.repl = function(arg)
