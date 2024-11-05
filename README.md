@@ -47,6 +47,21 @@ Or you can use:
 reqire("nevl").open_repl("bash")
 ```
 
+# Usecase:[manim](https://github.com/3b1b/manim)
+If you want to be able to use interactive workflow for manim as explained by [3b1b](https://github.com/3b1b/manim) you can do this.
+  1. Define a mapping in your config file, for example:
+```lua
+vim.keymap.set("v", "<leader><cr>", function()
+    vim.fn.feedkeys([["+y]])
+    nevl.run_in_repl({"checkpoint_paste()"})
+end,{remap=true})
+```
+  2. Start REPL with 
+```vim
+:Nevl manimgl
+```
+
+  3.  Select your code and use `<leader><cr>` to run it.
 
 
 # Mapping
